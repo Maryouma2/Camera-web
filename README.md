@@ -1,65 +1,156 @@
-# Camera-web
-A web-based camera application that captures photos, saves them to a gallery, and supports full CRUD operations on stored images.
-# Camera Web Application
+# React Photo Gallery App
 
-## Overview
+A modern, responsive photo gallery application built with React, Vite, and React Router. Features authentication, CRUD operations, search functionality, and a beautiful glassmorphism UI.
 
-This project is a browser-based camera web application that allows users to capture photos using their device camera, save them to a gallery, store them securely in the cloud, and manage those images using full CRUD (Create, Read, Update, Delete) operations.
+## 🚀 Features
 
-The application demonstrates practical use of modern Web APIs and basic image management features commonly found in real-world web applications.
+- User authentication (Login/Signup)
+- Photo gallery with grid layout
+- Search photos by caption
+- Edit and delete photos
+- Responsive design
+- Modern glassmorphism UI
+- Mock data for development
 
----
+## 🛠️ Tech Stack
 
-## Features
+- **Frontend**: React 18, Vite
+- **Routing**: React Router v6
+- **Styling**: CSS with modern design
+- **HTTP Client**: Axios
+- **State Management**: React Context API
 
-* Capture photos directly from the device camera
-* Save captured photos to a gallery
-* Upload and store images in cloud storage
-* View images in a gallery layout
-* Update image details (e.g., name or description)
-* Delete images from the gallery
-* Responsive and user-friendly interface
+## 📦 Installation
 
----
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd frontend
+```
 
-## Technologies Used
+2. Install dependencies:
+```bash
+npm install
+```
 
-* HTML5
-* CSS3
-* JavaScript (ES6+)
-* MediaDevices / getUserMedia API
-* Cloud Storage (e.g., Firebase, AWS S3, or similar)
-* Local Storage (for temporary state, if applicable)
+3. Copy environment variables:
+```bash
+cp .env.example .env
+```
 
----
+4. Start development server:
+```bash
+npm run dev
+```
 
+The app will be available at `http://localhost:5173`
 
+## 🏗️ Building for Production
 
-## Usage
+```bash
+npm run build
+```
 
-1. Allow camera permission when prompted by the browser.
-2. Capture a photo using the camera interface.
-3. The photo is automatically saved to the gallery.
-4. Use the gallery controls to view, update, or delete images.
+This creates a `dist` folder with the production build.
 
----
+## 🚀 Deployment
 
-## Future Enhancements
+### Vercel Deployment
 
-* User authentication and authorization
-* Cloud image optimization and compression
-* Backend support with database
+1. **Connect to Vercel:**
+   - Go to [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+   - Vercel will automatically detect it as a Vite project
 
----
+2. **Environment Variables:**
+   Set these in Vercel dashboard (Project Settings > Environment Variables):
+   ```
+   VITE_API_BASE_URL=https://your-api-url.com/api
+   VITE_APP_NAME=React Photo Gallery
+   VITE_APP_VERSION=1.0.0
+   ```
 
-## Contributors
+3. **Deploy:**
+   - Push to your main branch or deploy manually
+   - Vercel will build and deploy automatically
 
-* Maryam Tahan
-* Ghadir Zouhaybi
-* Inass Rabah
+### Netlify Deployment
 
----
+1. **Connect to Netlify:**
+   - Go to [netlify.com](https://netlify.com)
+   - Drag and drop the `dist` folder or connect your Git repository
 
-## License
+2. **Build Settings:**
+   ```
+   Build command: npm run build
+   Publish directory: dist
+   ```
+
+3. **Environment Variables:**
+   Set in Netlify dashboard (Site settings > Environment variables):
+   ```
+   VITE_API_BASE_URL=https://your-api-url.com/api
+   VITE_APP_NAME=React Photo Gallery
+   VITE_APP_VERSION=1.0.0
+   ```
+
+4. **Deploy:**
+   - Netlify will build and deploy automatically
+
+### Manual Deployment
+
+1. Build the project:
+```bash
+npm run build
+```
+
+2. Upload the `dist` folder contents to your hosting provider (Netlify, Vercel, AWS S3, etc.)
+
+## 🔧 Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `VITE_API_BASE_URL` | Base URL for API calls | `https://jsonplaceholder.typicode.com` |
+| `VITE_APP_NAME` | Application name | `React Photo Gallery` |
+| `VITE_APP_VERSION` | Application version | `1.0.0` |
+
+## 🧪 Testing the Deployed Site
+
+### With Mock Data
+1. The app uses mock data by default
+2. Test all routes: `/`, `/login`, `/signup`, `/gallery`
+3. Verify authentication flow
+4. Test search functionality
+5. Check responsive design on mobile
+
+### API Integration Testing
+When connecting to a real API:
+1. Update `VITE_API_BASE_URL` in environment variables
+2. Test login/signup with real credentials
+3. Verify photo CRUD operations work with backend
+4. Check error handling for API failures
+
+## 📱 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint
+
+## 🎨 Design Features
+
+- **Glassmorphism UI**: Modern transparent elements with blur effects
+- **Responsive Grid**: Adapts to different screen sizes
+- **Gradient Buttons**: Vibrant color scheme with hover effects
+- **Smooth Animations**: Fade-in and slide-in transitions
+- **Accessibility**: Proper focus states and ARIA labels
+
+## 🔒 Security Notes
+
+- Environment variables are properly prefixed with `VITE_` for client-side access
+- No sensitive data is exposed to the client
+- Authentication tokens should be handled securely in production
+
+## 📝 License
 
 This project is licensed under the MIT License.
