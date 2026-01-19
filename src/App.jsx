@@ -1,36 +1,47 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import './App.css';
-import { AuthProvider, useAuth } from './context/AuthContext';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
-import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Home from './pages/Home';
 import Gallery from './pages/Gallery';
-
-function AppContent() {
-  return (
-    <>
-      <nav style={{ marginBottom: '2rem' }}>
-        <Link to="/" style={{ margin: '0 1rem' }}>Home</Link>
-        <Link to="/gallery" style={{ margin: '0 1rem' }}>Gallery</Link>
-        <Link to="/login" style={{ margin: '0 1rem' }}>Login</Link>
-        <Link to="/signup" style={{ margin: '0 1rem' }}>Signup</Link>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/gallery" element={<ProtectedRoute><Gallery /></ProtectedRoute>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
-    </>
-  );
-}
+import Camera from './pages/Camera';
+import './App.css';
 
 function App() {
   return (
     <AuthProvider>
       <Router>
-        <AppContent />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/gallery"
+            element={
+              <ProtectedRoute>
+                <Gallery />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/camera"
+            element={
+              <ProtectedRoute>
+                <Camera />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/" element={<Navigate to="/login" />} />
+        </Routes>
       </Router>
     </AuthProvider>
   );

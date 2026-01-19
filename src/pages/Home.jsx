@@ -1,42 +1,86 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const Home = () => {
-  const { isAuthenticated, logout } = useAuth();
+export default function Home() {
+  const navigate = useNavigate();
+  const { logout } = useAuth();
 
-  if (!isAuthenticated) {
-    return (
-      <div>
-        <h1>Home Page</h1>
-        <p>Please log in to access your dashboard.</p>
-        <a href="/login" style={{ color: '#00D4FF', textDecoration: 'none' }}>Go to Login</a>
-      </div>
-    );
-  }
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
+  };
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      <p>Welcome! You are authenticated.</p>
-      <button
-        onClick={logout}
-        style={{
-          padding: '1rem 2rem',
-          background: 'linear-gradient(135deg, #00D4FF 0%, #FF0080 100%)',
-          color: 'white',
-          border: 'none',
-          borderRadius: '6px',
-          cursor: 'pointer',
-          fontSize: '1rem',
-          fontWeight: '500',
-          transition: 'background 0.2s ease, transform 0.1s ease'
-        }}
-        onMouseEnter={(e) => e.target.style.background = 'linear-gradient(135deg, #00FFFF 0%, #FF1493 100%)'}
-        onMouseLeave={(e) => e.target.style.background = 'linear-gradient(135deg, #00D4FF 0%, #FF0080 100%)'}
-      >
-        Logout
-      </button>
+    <div style={{ 
+      minHeight: '100vh', 
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      padding: '20px'
+    }}>
+      <nav style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '20px',
+        background: 'rgba(255,255,255,0.1)',
+        borderRadius: '10px',
+        marginBottom: '30px'
+      }}>
+        <h1 style={{ color: 'white', margin: 0 }}>📸 Camera App</h1>
+        <div>
+          <button
+            onClick={() => navigate('/camera')}
+            style={{
+              padding: '10px 20px',
+              margin: '0 10px',
+              background: 'rgba(255,255,255,0.2)',
+              border: 'none',
+              borderRadius: '5px',
+              color: 'white',
+              cursor: 'pointer'
+            }}
+          >
+            📷 Camera
+          </button>
+          <button
+            onClick={() => navigate('/gallery')}
+            style={{
+              padding: '10px 20px',
+              margin: '0 10px',
+              background: 'rgba(255,255,255,0.2)',
+              border: 'none',
+              borderRadius: '5px',
+              color: 'white',
+              cursor: 'pointer'
+            }}
+          >
+            🖼️ Gallery
+          </button>
+          <button
+            onClick={handleLogout}
+            style={{
+              padding: '10px 20px',
+              margin: '0 10px',
+              background: 'rgba(255,0,0,0.3)',
+              border: 'none',
+              borderRadius: '5px',
+              color: 'white',
+              cursor: 'pointer'
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      </nav>
+
+      <div style={{
+        textAlign: 'center',
+        color: 'white',
+        marginTop: '100px'
+      }}>
+        <h2>Welcome! You are authenticated.</h2>
+        <p>Click Camera to take photos or Gallery to view them.</p>
+      </div>
     </div>
   );
-};
-
-export default Home;
+}
